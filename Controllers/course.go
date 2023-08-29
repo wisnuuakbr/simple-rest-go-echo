@@ -28,5 +28,30 @@ func GetCourse(c echo.Context) error {
 	}
 
     return c.JSON(http.StatusOK, response)
+}
 
+// Create Course Data
+func CreateCourse(c echo.Context) error {
+    db := Config.GetDB()
+    
+    course := new(Models.Course)
+
+    if err := c.Bind(course); err != nil {
+        data := map[string]interface{}{
+            "message": err.Error(),
+        }
+        return c.JSON(http.StatusInternalServerError, data)
+    }
+
+    if err := db.Create(&course).Error; err != nil {
+        data := map[string]interface{}{
+            "message": err.Error(),
+        }
+        return c.JSON(http.StatusInternalServerError, data)
+    }
+
+    response := map[string]interface{}{
+        "data": course,
+    }
+    return c.JSON(http.StatusOK, response)
 }
