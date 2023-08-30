@@ -7,6 +7,7 @@ type Course struct {
 	Price       float64 `json:"price"`
 }
 
-func (b *Course) TableName() string {
+// returning rtable name
+func (course *Course) TableName() string {
 	return "course"
 }

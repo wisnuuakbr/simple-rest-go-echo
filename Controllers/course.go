@@ -13,7 +13,6 @@ func GetCourse(c echo.Context) error {
     // Get the database instance from Config package
     db := Config.GetDB()
 
-    // define slice
     var course []*Models.Course
 
     if res := db.Find(&course); res.Error != nil {
@@ -94,6 +93,28 @@ func UpdateCourse(c echo.Context) error {
 
     response := map[string]interface{}{
         "data": existing_course,
+    }
+    return c.JSON(http.StatusOK, response)
+}
+
+// Delete Course Data
+func DeleteCourse(c echo.Context) error {
+    db := Config.GetDB()
+
+    course := new(Models.Course)
+
+    id := c.Param("id")
+
+    err := db.Delete(&course, id).Error
+    if err != nil {
+        data := map[string]interface{}{
+            "message": err.Error(),
+        }
+        return c.JSON(http.StatusInternalServerError, data)
+    }
+
+    response := map[string]interface{}{
+        "message": "Data berhasil dihapus!",
     }
     return c.JSON(http.StatusOK, response)
 }
