@@ -2,6 +2,8 @@ package Config
 
 import (
 	"fmt"
+	"os"
+	"strconv"
 
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
@@ -19,13 +21,22 @@ type DBConfig struct {
 
 func BuildDBConfig() *DBConfig {
     dbConfig := DBConfig{
-        Host:     "localhost",
-        Port:     3306,
-        User:     "root",
-        Password: "",
-        DBName:   "altera-course",
+        Host:     os.Getenv("DB_HOST"),
+        Port:     mustAtoi(os.Getenv("DB_PORT")),
+        User:     os.Getenv("DB_USER"),
+        Password: os.Getenv("DB_PASSWORD"),
+        DBName:   os.Getenv("DB_NAME"),
     }
     return &dbConfig
+}
+
+// convert string to int
+func mustAtoi(s string) int {
+    i, err := strconv.Atoi(s)
+    if err != nil {
+        panic(err)
+    }
+    return i
 }
 
 func DbURL(dbConfig *DBConfig) string {

@@ -1,14 +1,22 @@
 package main
 
 import (
+	"log"
+	"os"
 	"simple-rest-go-echo/Config"
 	"simple-rest-go-echo/Models"
 	"simple-rest-go-echo/Routes"
 
+	"github.com/joho/godotenv"
 	"github.com/labstack/echo/v4"
 )
 
 func main() {
+    // Load environment variables from .env file
+    if err := godotenv.Load(); err != nil {
+        log.Fatalf("Error loading .env file: %v", err)
+    }
+
     // Initialize Echo instance
     e := echo.New()
 
@@ -27,5 +35,6 @@ func main() {
     Routes.SetupRoutes(e)
 
     // Start the server
-    e.Logger.Fatal(e.Start(":8080"))
+    serverPort := os.Getenv("SERVER_PORT")
+    e.Logger.Fatal(e.Start(":" + serverPort))
 }

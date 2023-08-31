@@ -23,6 +23,7 @@ func GetCourse(c echo.Context) error {
 	}
 
     response := map[string]interface{}{
+        "message": "Fetch Successfully",
 		"data": course,
 	}
 
@@ -50,6 +51,7 @@ func CreateCourse(c echo.Context) error {
     }
 
     response := map[string]interface{}{
+        "message": "Create Successfully",
         "data": course,
     }
     return c.JSON(http.StatusOK, response)
@@ -92,6 +94,7 @@ func UpdateCourse(c echo.Context) error {
 	}
 
     response := map[string]interface{}{
+        "message": "Update Successfully",
         "data": existing_course,
     }
     return c.JSON(http.StatusOK, response)
@@ -114,7 +117,7 @@ func DeleteCourse(c echo.Context) error {
     }
 
     response := map[string]interface{}{
-        "message": "Data berhasil dihapus!",
+        "message": "Delete Successfully!",
     }
     return c.JSON(http.StatusOK, response)
 }
