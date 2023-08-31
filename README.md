@@ -24,7 +24,7 @@ $ go mod tidy
 ```
 
 ## Configuration
-Copy the .env.example to .env  
+Copy the .env.example file and rename it to .env
 Change the config for your local server
 
 ```bash
