@@ -28,11 +28,12 @@ Copy the .env.example to .env
 Change the config for your local server
 
 ```bash
-Host:     "localhost",
-Port:     3306,
-User:     "root",
-Password: "",
-DBName:   "altera-course",
+DB_HOST=      localhost
+DB_PORT=      3306
+DB_USER=      root
+DB_PASSWORD=
+DB_NAME=      altera-course
+SERVER_PORT=  8080
 ```
 
 ## Running Server
