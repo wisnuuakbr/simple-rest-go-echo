@@ -24,8 +24,8 @@ $ go mod tidy
 ```
 
 ## Configuration
-
-Change the config on Config/db.go for your dbconfig
+Copy the .env.example to .env  
+Change the config for your local server
 
 ```bash
 Host:     "localhost",
