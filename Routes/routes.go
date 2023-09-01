@@ -8,8 +8,8 @@ import (
 
 // setup for routing
 func SetupRoutes(e *echo.Echo) {
-	e.GET("/courses", Controllers.GetCourse)
-	e.POST("/courses", Controllers.CreateCourse)
-	e.PUT("/courses/:id", Controllers.UpdateCourse)
-	e.DELETE("/courses/:id", Controllers.DeleteCourse)
+	e.GET("/course", Controllers.GetCourse)
+	e.POST("/course", Controllers.CreateCourse)
+	e.PUT("/course/:id", Controllers.UpdateCourse)
+	e.DELETE("/course/:id", Controllers.DeleteCourse)
 }
