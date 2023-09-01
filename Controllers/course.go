@@ -6,6 +6,7 @@ import (
 	"simple-rest-go-echo/Models"
 
 	"github.com/labstack/echo/v4"
+	"gopkg.in/go-playground/validator.v9"
 )
 
 // Get All Courses Data
@@ -15,9 +16,9 @@ func GetCourse(c echo.Context) error {
 
     var course []*Models.Course
 
-    if res := db.Find(&course); res.Error != nil {
+    if err := db.Find(&course); err.Error != nil {
 		data := map[string]interface{}{
-			"message": res.Error.Error(),
+			"message": err.Error.Error(),
 		}
 		return c.JSON(http.StatusOK, data)
 	}
@@ -36,11 +37,21 @@ func CreateCourse(c echo.Context) error {
 
     course := new(Models.Course)
 
+    // Bind data
     if err := c.Bind(course); err != nil {
         data := map[string]interface{}{
             "message": err.Error(),
         }
-        return c.JSON(http.StatusInternalServerError, data)
+        return c.JSON(http.StatusBadRequest, data)
+    }
+
+    // Validate the course struct
+    validate := validator.New()
+    if err := validate.Struct(course); err != nil {
+        data := map[string]interface{}{
+            "message": err.Error(),
+        }
+        return c.JSON(http.StatusBadRequest, data)
     }
 
     if err := db.Create(&course).Error; err != nil {
@@ -63,12 +74,21 @@ func UpdateCourse(c echo.Context) error {
 
     course := new(Models.Course)
 
-    // Binding data
+    // Bind data
     if err := c.Bind(course); err != nil {
         data := map[string]interface{}{
             "message": err.Error(),
         }
         return c.JSON(http.StatusInternalServerError, data)
+    }
+
+    // Validate the course struct
+    validate := validator.New()
+    if err := validate.Struct(course); err != nil {
+        data := map[string]interface{}{
+            "message": err.Error(),
+        }
+        return c.JSON(http.StatusBadRequest, data)
     }
     
     // Retrieve ID from the URL parameter
