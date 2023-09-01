@@ -1,21 +1,19 @@
 package main
 
 import (
-	"log"
 	"os"
 	"simple-rest-go-echo/Config"
 	"simple-rest-go-echo/Models"
 	"simple-rest-go-echo/Routes"
 
-	"github.com/joho/godotenv"
 	"github.com/labstack/echo/v4"
 )
 
 func main() {
     // Load environment variables from .env file
-    if err := godotenv.Load(); err != nil {
-        log.Fatalf("Error loading .env file: %v", err)
-    }
+    // if err := godotenv.Load(); err != nil {
+    //     log.Fatalf("Error loading .env file: %v", err)
+    // }
 
     // Initialize Echo instance
     e := echo.New()
