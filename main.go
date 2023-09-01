@@ -33,6 +33,6 @@ func main() {
     Routes.SetupRoutes(e)
 
     // Start the server
-    serverPort := os.Getenv("SERVER_PORT")
+    serverPort := os.Getenv("PORT")
     e.Logger.Fatal(e.Start(":" + serverPort))
 }
