@@ -24,15 +24,16 @@ $ go mod tidy
 ```
 
 ## Configuration
-
-Change the config on Config/db.go for your dbconfig
+Copy the .env.example file and rename it to .env  
+Change the config for your local server
 
 ```bash
-Host:     "localhost",
-Port:     3306,
-User:     "root",
-Password: "",
-DBName:   "altera-course",
+DB_HOST=      localhost
+DB_PORT=      3306
+DB_USER=      root
+DB_PASSWORD=
+DB_NAME=      altera-course
+SERVER_PORT=  8080
 ```
 
 ## Running Server
