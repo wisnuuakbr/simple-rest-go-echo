@@ -22,7 +22,7 @@ type DBConfig struct {
 func BuildDBConfig() *DBConfig {
     dbConfig := DBConfig{
         Host:     os.Getenv("DB_HOST"),
-        Port:     mustAtoi(os.Getenv("DB_PORT")),
+        Port:     portConv(os.Getenv("DB_PORT")),
         User:     os.Getenv("DB_USER"),
         Password: os.Getenv("DB_PASSWORD"),
         DBName:   os.Getenv("DB_NAME"),
@@ -31,7 +31,7 @@ func BuildDBConfig() *DBConfig {
 }
 
 // convert string to int
-func mustAtoi(s string) int {
+func portConv(s string) int {
     i, err := strconv.Atoi(s)
     if err != nil {
         panic(err)
