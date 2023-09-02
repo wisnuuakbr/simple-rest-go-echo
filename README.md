@@ -39,7 +39,7 @@ SERVER_PORT=  8080
 ## Running Server
 
 ```bash
-$ go run server/main.go
+$ go run main.go
 ```
 
 ## Endpoints
